@@ -9,15 +9,17 @@ public class BeatDetection : MonoBehaviour {
     private GameObject other;
     public int lane;
     private float radius;
+	private AudioSource myAudio;
 
-	public AudioSource perfect;
-	public AudioSource great;
-	public AudioSource good;
-	public AudioSource bad;
+	public AudioClip perfect;
+	public AudioClip great;
+	public AudioClip good;
+	public AudioClip bad;
 
     public void Start()
     {
         radius = GetComponent<CircleCollider2D>().radius;
+		myAudio = GetComponent<AudioSource> ();
         if (tag == "Major") lane = 1;
         else lane = 0;
     }
@@ -34,35 +36,35 @@ public class BeatDetection : MonoBehaviour {
                 if (otherTag == (tag + " particle"))
                 {
                     Vector2 distance = other.transform.position - gameObject.transform.position;
-
+						
                     //Perfect
 					if(Mathf.Abs(distance.magnitude-radius) < 1.4f)
                     {
 						gameManager.GetComponent<GameManager> ().Perfect (lane);
-						perfect.enabled = true;
-						perfect.Play();
+						myAudio.clip = perfect;
+						myAudio.Play ();
                     }
                     //Good
 					if (Mathf.Abs(distance.magnitude-radius) > 1.4f && (distance.magnitude - radius) < 1.6f)
                     {
 						gameManager.GetComponent<GameManager> ().Good (lane);
-						great.enabled = true;
-						great.Play();
+						myAudio.clip = great;
+						myAudio.Play ();
                     }
                     //Okay
 					if(Mathf.Abs(distance.magnitude-radius) > 1.6f)
                     {
 						gameManager.GetComponent<GameManager> ().Okay (lane);
-						good.enabled = true;
-						good.Play();
+						myAudio.clip = good;
+						myAudio.Play ();
                     }
                 }
                 //Wrong
                 else
                 {
 					gameManager.GetComponent<GameManager> ().Wrong (lane);
-					bad.enabled = true;
-					bad.Play();
+					myAudio.clip = bad;
+					myAudio.Play ();
                 }
                 Destroy(other);
             }
