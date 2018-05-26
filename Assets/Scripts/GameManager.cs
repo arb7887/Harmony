@@ -45,19 +45,20 @@ public class GameManager : MonoBehaviour {
 		//check to make sure the song is still playing, when song is done game is done
 		//shownScore = score.ToString();
 		time += Time.deltaTime*1000;
-		if (time > 3000f && time < 3100f) {
+		if (time > 3000f) {
 			//buffer for spawning things
 			//check fo the current time and if its something that should happen, let it happen
 			//spawn particle at there spawn - time to travel to the bar
-			SpawnParticle(1,0);
-			CheckPart ();
+			if(time%1000 == 0){
+				Spawn()
+			}
 		}
 		else {
 			//end game stuff
 		}
 	}
 
-	void SpawnParticle(int color, int lane){
+	void Spawn(int color, int lane){
 		switch (lane) {
 		case 0:
 			if (color == 0) {
@@ -77,13 +78,6 @@ public class GameManager : MonoBehaviour {
 				p [p.Count - 1].GetComponent<Partical> ().Lane = 1;
 			}
 			break;
-		}
-	}
-	void CheckPart(){
-		foreach (GameObject part in p) {
-			if (!part.GetComponent<Partical>().IsFalling) {
-				Destroy (part);
-			}
 		}
 	}
 	//get set
