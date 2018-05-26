@@ -34,7 +34,7 @@ public class BeatDetection : MonoBehaviour {
                 if (otherTag == (tag + " particle"))
                 {
                     Vector2 distance = other.transform.position - gameObject.transform.position;
-					Debug.Log (Mathf.Abs(distance.magnitude-radius));
+
                     //Perfect
 					if(Mathf.Abs(distance.magnitude-radius) < 1.4f)
                     {

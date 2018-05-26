@@ -14,7 +14,7 @@ public class PlayerControls : MonoBehaviour {
     public float bottomLineY;
     public float startX;
 
-    private float swapDuration = 0.2f;
+    private float swapDuration = 0.1f;
     private float swapTime = 0.0f;
     private float swapPercent = 0.0f;
     private bool isSwapping = false;

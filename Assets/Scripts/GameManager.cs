@@ -53,13 +53,14 @@ public class GameManager : MonoBehaviour {
 		p = new List<GameObject> ();
         //InvokeRepeating("Spawn",3f,1f);
         noteIndex = 0;
+		time = 0.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//check to make sure the song is still playing, when song is done game is done
 		shownScore.text = "Score: " + score;
-		time = Time.time*1000;
+		time += Time.deltaTime*1000;
 		if (myHolderL != null) {
 			leftTime += Time.deltaTime;
 			if (leftTime >= 2f) {
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour {
 				rightTime = 0;
 			}
 		}
+		//Debug.Log (time);
         //if(time > 5000f && time < 5050f)  InvokeRepeating("Spawn",8f,1f);
         if(time + 2000 >= songOBJ.particles[noteIndex].time[0])
         {
@@ -84,6 +86,7 @@ public class GameManager : MonoBehaviour {
             if (right != "x") Spawn(right, 1);
             noteIndex++;
         }
+		//Debug.Log (song.isPlaying);
 	}
 
 	void Spawn(string c, int l){
