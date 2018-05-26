@@ -37,9 +37,12 @@ public class GameManager : MonoBehaviour {
 	private Image myHolderR;
 	private float rightTime;
 	private float leftTime;
+<<<<<<< HEAD
 
     public GameObject json;
     private Song songOBJ;
+=======
+>>>>>>> 91219ac6bc6e8f91d447cf6c4a35b7c3945ede61
 
 	// Use this for initialization
 	void Start () {
