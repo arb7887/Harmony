@@ -48,13 +48,6 @@ public class GameManager : MonoBehaviour {
 			//buffer for spawning things
 			//check fo the current time and if its something that should happen, let it happen
 			//spawn particle at there spawn - time to travel to the bar
-<<<<<<< HEAD
-			InvokeRepeating("Spawn",10f,1f);
-=======
-			if(time%1000 == 0){
-				//Spawn()
-			}
->>>>>>> 3851a3ea9dceed31f7bd6e10d8185bb4d8b621fe
 		}
 		else {
 			//end game stuff
@@ -87,7 +80,6 @@ public class GameManager : MonoBehaviour {
 			break;
 		}
 	}
-<<<<<<< HEAD
 
 	public void Perfect(){
 		score += perfect;
@@ -107,7 +99,5 @@ public class GameManager : MonoBehaviour {
 	public void Miss(){
 		score += miss;
 	}
-=======
->>>>>>> 3851a3ea9dceed31f7bd6e10d8185bb4d8b621fe
 	//get set
 }
