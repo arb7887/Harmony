@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour {
 	private float leftTime;
     public bool endGameSequence;
     private bool canSpawn;
+	//public GameObject endCanvas;
 
     //song file fields
     public GameObject json;
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour {
 				rightTime = 0;
 			}
 		}
-		//Debug.Log (time);
+		Debug.Log (time);
         //if(time > 5000f && time < 5050f)  InvokeRepeating("Spawn",8f,1f);
         if(time + 2000 >= songOBJ.particles[noteIndex].time[0] && canSpawn)
         {
@@ -88,7 +89,7 @@ public class GameManager : MonoBehaviour {
             string right = which.Substring(1, 1);
             if (left != "x") Spawn(left, 0);
             if (right != "x") Spawn(right, 1);
-            if (songOBJ.particles.Length > noteIndex) noteIndex++;
+            if (songOBJ.particles.Length - 1 > noteIndex) noteIndex++;
             else
             {
                 endGameSequence = true;
