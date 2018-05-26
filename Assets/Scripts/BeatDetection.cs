@@ -29,7 +29,9 @@ public class BeatDetection : MonoBehaviour {
                 || (lane == 0 && Input.GetKeyDown(KeyCode.LeftArrow)))
             {
                 //Correct
-                if (otherTag == gameObject.tag)
+                Debug.Log(otherTag);
+                Debug.Log(tag);
+                if (otherTag == (tag + " particle"))
                 {
                     Vector2 distance = other.transform.position - gameObject.transform.position;
 					Debug.Log (Mathf.Abs(distance.magnitude-radius));
@@ -69,12 +71,12 @@ public class BeatDetection : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Minor particle")
-            otherTag = "Minor";
-        else if (collision.gameObject.tag == "Major particle")
-            otherTag = "Major";
-        other = collision.gameObject;
-        isColliding = true;
+        if (collision.gameObject.tag == "Major particle" || collision.gameObject.tag == "Minor particle")
+        {
+            otherTag = collision.gameObject.tag;
+            other = collision.gameObject;
+            isColliding = true;
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
