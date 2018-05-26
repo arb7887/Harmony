@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 	private int wrong = -5;
 	private int miss = -10;
 
+<<<<<<< HEAD
 	private bool pause;
 	public AudioSource song;
 
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour {
 
 	private float time;
 	private List<GameObject> particles;
+=======
+    private bool pause;
+>>>>>>> d2a7755f723aef0b26f676b30d6e2a051899c29a
 
 	// Use this for initialization
 	void Start () {
