@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour {
 
 	private float fallTime;
 	private float fallDur;
-
 	// Use this for initialization
 	void Start () {
 		//song.Play ();
@@ -80,5 +79,15 @@ public class GameManager : MonoBehaviour {
 			break;
 		}
 	}
+<<<<<<< HEAD
+=======
+	void CheckPart(){
+		foreach (GameObject part in p) {
+			if (!part.GetComponent<Partical>().IsFalling) {
+				//Destroy (part);
+			}
+		}
+	}
+>>>>>>> f78eea20f1566c297052fe2147377bd4d3f95bde
 	//get set
 }
