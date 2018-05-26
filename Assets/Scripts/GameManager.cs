@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour {
 //important game info
 	//end game information
 	private int score = 0;
-	private int numMised = 0;
-	private int numHit = 0;
+	private int numMissed = 0;
+	private int numWrong = 0;
+	private int numPerfect = 0;
+	private int numGood = 0;
+	private int numOkay = 0;
 	//scoring stuff
 	private int perfect = 10;
 	private int good = 5;
@@ -38,8 +41,13 @@ public class GameManager : MonoBehaviour {
 	private float rightTime;
 	private float leftTime;
 
+    public GameObject json;
+    private Song songOBJ;
+
 	// Use this for initialization
 	void Start () {
+        songOBJ = json.GetComponent<jsonParse>().Parse("Assets/Songs/gamejam01.json");
+        Debug.Log(songOBJ.particles[0].time[0]);
 		//song.Play ();
 		p = new List<GameObject> ();
 		InvokeRepeating("Spawn",3f,1f);
@@ -112,6 +120,7 @@ public class GameManager : MonoBehaviour {
 			myHolderR.GetComponent<Image> ().sprite = results [0];
 				break;
 		}
+		numPerfect++;
 	}
 
 	public void Good(int lane){
@@ -129,6 +138,7 @@ public class GameManager : MonoBehaviour {
 			myHolderR.GetComponent<Image> ().sprite = results [1];
 			break;
 		}
+		numGood++;
 	}
 
 	public void Okay(int lane){
@@ -145,6 +155,7 @@ public class GameManager : MonoBehaviour {
 			myHolderR.GetComponent<Image> ().sprite = results [2];
 				break;
 		}
+		numOkay++;
 	}
 
 	public void Wrong(int lane){
@@ -161,6 +172,7 @@ public class GameManager : MonoBehaviour {
 			myHolderR.GetComponent<Image> ().sprite = results [3];
 				break;
 		}
+		numWrong++;
 	}
 	public void Miss(int lane){
 		score += miss;
@@ -177,6 +189,7 @@ public class GameManager : MonoBehaviour {
 			myHolderR.GetComponent<Image> ().sprite = results [4];
 				break;
 		}
+		numMissed++;
 	}
 	//get set
 }

@@ -26,18 +26,19 @@ public class BeatDetection : MonoBehaviour {
                 if (otherTag == gameObject.tag)
                 {
                     Vector2 distance = other.transform.position - gameObject.transform.position;
+					Debug.Log (Mathf.Abs(distance.magnitude-radius));
                     //Perfect
-                    if((distance.magnitude - radius) < 0.5f)
+					if(Mathf.Abs(distance.magnitude-radius) < 1.4f)
                     {
 						gameManager.GetComponent<GameManager> ().Perfect (lane);
                     }
                     //Good
-                    if ((distance.magnitude - radius) < 1.2f && (distance.magnitude - radius) > 0.5f)
+					if (Mathf.Abs(distance.magnitude-radius) > 1.4f && (distance.magnitude - radius) < 1.6f)
                     {
 						gameManager.GetComponent<GameManager> ().Good (lane);
                     }
                     //Okay
-                    if((distance.magnitude - radius) > 1.2f)
+					if(Mathf.Abs(distance.magnitude-radius) > 1.6f)
                     {
 						gameManager.GetComponent<GameManager> ().Okay (lane);
                     }
