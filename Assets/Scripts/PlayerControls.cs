@@ -20,6 +20,7 @@ public class PlayerControls : MonoBehaviour {
     private bool isSwapping = false;
     private Vector2 oldMajorPos;
     private Vector2 oldMinorPos;
+
 	void Start () {
         majorPos = major.transform.position;
         minorPos = minor.transform.position;

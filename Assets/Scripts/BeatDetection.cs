@@ -29,23 +29,23 @@ public class BeatDetection : MonoBehaviour {
                     //Perfect
                     if((distance.magnitude - radius) < 0.5f)
                     {
-						gameManager.GetComponent<GameManager> ().Perfect ();
+						gameManager.GetComponent<GameManager> ().Perfect (lane);
                     }
                     //Good
                     if ((distance.magnitude - radius) < 1.2f && (distance.magnitude - radius) > 0.5f)
                     {
-						gameManager.GetComponent<GameManager> ().Good ();
+						gameManager.GetComponent<GameManager> ().Good (lane);
                     }
                     //Okay
                     if((distance.magnitude - radius) > 1.2f)
                     {
-						gameManager.GetComponent<GameManager> ().Okay ();
+						gameManager.GetComponent<GameManager> ().Okay (lane);
                     }
                 }
                 //Wrong
                 else
                 {
-					gameManager.GetComponent<GameManager> ().Wrong ();
+					gameManager.GetComponent<GameManager> ().Wrong (lane);
                 }
                 Destroy(other);
             }

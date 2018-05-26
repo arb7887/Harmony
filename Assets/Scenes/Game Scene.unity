@@ -669,8 +669,14 @@ MonoBehaviour:
   miniorP: {fileID: 1150443173260714, guid: 32883146f15f57d4f8523ecf1ac47951, type: 2}
   major: {fileID: 163948831}
   minior: {fileID: 1789288602}
-  results: []
-  holder: {fileID: 114891972799062736, guid: db0e29d07b57c054b823cc542f0bac63, type: 2}
+  results:
+  - {fileID: 21300000, guid: 338fc1fe17cd5e14b8eba17380bf354b, type: 3}
+  - {fileID: 21300000, guid: 148cb8d4fc893874ea3b238834ec08ad, type: 3}
+  - {fileID: 21300000, guid: a1cdc10a0788c14418450c1a78fe69ff, type: 3}
+  - {fileID: 21300000, guid: cc96f76d70e1f8244af531e0569295b5, type: 3}
+  - {fileID: 21300000, guid: 4c2440513646bf746b03f4c5f35b858b, type: 3}
+  holderL: {fileID: 114225000117392394, guid: 05be2fe8b0cc265459b778023b8ad157, type: 2}
+  holderR: {fileID: 114766291937462982, guid: 83c5d044c2a3ce9489da1f0c10c404e1, type: 2}
   can: {fileID: 1011274827}
 --- !u!1 &2035232732
 GameObject:
