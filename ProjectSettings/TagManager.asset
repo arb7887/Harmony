@@ -8,6 +8,7 @@ TagManager:
   - Minor
   - Major particle
   - Minor particle
+  - KillBox
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 906749509
+    locked: 0
+  - name: Foreground
+    uniqueID: 924364805
     locked: 0
