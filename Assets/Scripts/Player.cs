@@ -12,25 +12,51 @@ public class Player : MonoBehaviour {
     public GameObject major;
     public GameObject minor;
 
-    public GameObject gameManager;
-
     public float bottomLineY;
     public float startX;
 
+    private float swapDuration = 0.2f;
+    private float swapTime = 0.0f;
+    private float swapPercent = 0.0f;
+    private bool isSwapping = false;
+    private Vector2 oldMajorPos;
+    private Vector2 oldMinorPos;
 	void Start () {
         majorPos = major.transform.position;
         minorPos = minor.transform.position;
 
         majorPos.x = startX;
         minorPos.x = -startX;
+        majorPos.y = bottomLineY;
+        minorPos.y = bottomLineY;
 	}
 	
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space)) Swap();
+        majorPos = major.transform.position;
+        minorPos = minor.transform.position;
+
+        if (Input.GetKeyDown(KeyCode.Space) && !isSwapping) Swap();
+        if (isSwapping)
+        {
+            swapTime += Time.deltaTime;
+            swapPercent = swapTime / swapDuration;
+            majorPos = Vector2.Lerp(oldMajorPos, oldMinorPos, swapPercent);
+            minorPos = Vector2.Lerp(oldMinorPos, oldMajorPos, swapPercent);
+            if (swapTime >= swapDuration)
+            {
+                isSwapping = false;
+                swapPercent = 0.0f;
+                swapTime = 0.0f;
+            }
+        }
+        major.transform.position = majorPos;
+        minor.transform.position = minorPos;
 	}
 
     void Swap()
     {
-
+        isSwapping = true;
+        oldMajorPos = majorPos;
+        oldMinorPos = minorPos;
     }
 }
