@@ -18,7 +18,13 @@ public class Partical : MonoBehaviour {
 		transform.position -= (new Vector3 (0, 4f, 0) * Time.deltaTime);
 	}
 
-	public int Lane{
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Miss
+        if (collision.gameObject.tag == "KillBox") Destroy(gameObject);
+    }
+
+    public int Lane{
 		set{lane = value;}
 	}
 	public Vector3 EndPoint{
