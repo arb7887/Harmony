@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class PlayerControls : MonoBehaviour {
 
     //major = black orb
     //minor = white orb
     private Vector2 majorPos;
     private Vector2 minorPos;
-
     public GameObject major;
     public GameObject minor;
 
@@ -47,6 +46,8 @@ public class Player : MonoBehaviour {
                 isSwapping = false;
                 swapPercent = 0.0f;
                 swapTime = 0.0f;
+                major.GetComponent<BeatDetection>().lane = Mathf.Abs(major.GetComponent<BeatDetection>().lane - 1);
+                minor.GetComponent<BeatDetection>().lane = Mathf.Abs(minor.GetComponent<BeatDetection>().lane - 1);
             }
         }
         major.transform.position = majorPos;
