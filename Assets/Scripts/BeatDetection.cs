@@ -9,6 +9,12 @@ public class BeatDetection : MonoBehaviour {
     private GameObject other;
     public int lane;
     private float radius;
+
+	public AudioSource perfect;
+	public AudioSource great;
+	public AudioSource good;
+	public AudioSource bad;
+
     public void Start()
     {
         radius = GetComponent<CircleCollider2D>().radius;
@@ -33,22 +39,30 @@ public class BeatDetection : MonoBehaviour {
 					if(Mathf.Abs(distance.magnitude-radius) < 1.4f)
                     {
 						gameManager.GetComponent<GameManager> ().Perfect (lane);
+						perfect.enabled = true;
+						perfect.Play();
                     }
                     //Good
 					if (Mathf.Abs(distance.magnitude-radius) > 1.4f && (distance.magnitude - radius) < 1.6f)
                     {
 						gameManager.GetComponent<GameManager> ().Good (lane);
+						great.enabled = true;
+						great.Play();
                     }
                     //Okay
 					if(Mathf.Abs(distance.magnitude-radius) > 1.6f)
                     {
 						gameManager.GetComponent<GameManager> ().Okay (lane);
+						good.enabled = true;
+						good.Play();
                     }
                 }
                 //Wrong
                 else
                 {
 					gameManager.GetComponent<GameManager> ().Wrong (lane);
+					bad.enabled = true;
+					bad.Play();
                 }
                 Destroy(other);
             }
