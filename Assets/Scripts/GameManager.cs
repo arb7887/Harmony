@@ -45,9 +45,10 @@ public class GameManager : MonoBehaviour {
     public GameObject json;
     private Song songOBJ;
     private int noteIndex;
+	public string fileLoc;
 	// Use this for initialization
 	void Start () {
-        songOBJ = json.GetComponent<jsonParse>().Parse("Assets/Songs/gamejam01.json");
+		songOBJ = json.GetComponent<jsonParse>().Parse(fileLoc);
 		//song.Play ();
 		p = new List<GameObject> ();
         //InvokeRepeating("Spawn",3f,1f);

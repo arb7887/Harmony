@@ -10,8 +10,8 @@ public class MainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		track1.GetComponent<Button>().onClick.AddListener (GoToGame);
-		track2.GetComponent<Button> ().onClick.AddListener (GoToGame);
+		track1.GetComponent<Button>().onClick.AddListener (GoToTrackOne);
+		track2.GetComponent<Button> ().onClick.AddListener (GoToTrackTwo);
 	}
 	
 	// Update is called once per frame
@@ -19,7 +19,10 @@ public class MainMenu : MonoBehaviour {
 		
 	}
 
-	public void GoToGame(){
+	public void GoToTrackOne(){
 		SceneManager.LoadScene ("Game Scene");
+	}
+	public void GoToTrackTwo(){
+		SceneManager.LoadScene ("Game Scene 2");
 	}
 }
