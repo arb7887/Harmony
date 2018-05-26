@@ -24,7 +24,7 @@ public class Partical : MonoBehaviour {
         //Miss
 		if (collision.gameObject.tag == "KillBox") {
 			Destroy (gameObject);
-			//GameObject.Find ("Game Manager").GetComponent<GameManager> ().Miss ();
+			GameObject.Find ("Game Manager").GetComponent<GameManager> ().Miss (lane);
 		}
     }
 

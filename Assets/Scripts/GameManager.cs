@@ -29,11 +29,14 @@ public class GameManager : MonoBehaviour {
 	private float time;
 	private List<GameObject> p;
 
-	public Image[] results;
-	public Image holder;
+	public Sprite[] results;
+	public Image holderL;
+	public Image holderR;
 	public Canvas can;
-	private Image myHolder;
-	private float resultsLength;
+	private Image myHolderL;
+	private Image myHolderR;
+	private float rightTime;
+	private float leftTime;
 
 	// Use this for initialization
 	void Start () {
@@ -47,18 +50,21 @@ public class GameManager : MonoBehaviour {
 		//check to make sure the song is still playing, when song is done game is done
 		shownScore.text = "Score: " + score;
 		time += Time.deltaTime*1000;
-		if (myHolder != null) {
-			resultsLength += Time.deltaTime;
+		if (myHolderL != null) {
+			leftTime += Time.deltaTime;
+			if (leftTime >= 2f) {
+				Destroy (myHolderL);
+				leftTime = 0;
+			}
 		}
-		if (time > 1000f && time < 2000f) {
-			//buffer for spawning things
-			//check fo the current time and if its something that should happen, let it happen
-			//spawn particle at there spawn - time to travel to the bar
-			//InvokeRepeating("Spawn",3f,1f);
+		if (myHolderL != null) {
+			rightTime += Time.deltaTime;
+			if (rightTime >= 2f) {
+				Destroy (myHolderR);
+				rightTime = 0;
+			}
 		}
-		else {
-			//end game stuff
-		}
+		//if(time > 5000f && time < 5050f)  InvokeRepeating("Spawn",8f,1f);
 
 	}
 
@@ -89,29 +95,88 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void Perfect(){
+	public void Perfect(int lane){
 		score += perfect;
-		if (myHolder == null)
-			myHolder = Instantiate (holder, can.transform);
+		if (lane == 0 && myHolderL == null) {
+			myHolderL = Instantiate (holderL, can.transform);
+		} else if (lane == 1 && myHolderR == null) {
+			myHolderR = Instantiate (holderR, can.transform);
+		}
+		//set the image
+
+		switch (lane) {
+		case 0:
+			myHolderL.GetComponent<Image> ().sprite = results [0];
+			break;
+		case 1:
+			myHolderR.GetComponent<Image> ().sprite = results [0];
+				break;
+		}
 	}
 
-	public void Good(){
+	public void Good(int lane){
 		score += good;
-		if(myHolder == null)myHolder = Instantiate (holder, can.transform);
+		if (lane == 0 && myHolderL==null) {
+			myHolderL = Instantiate (holderL, can.transform);
+		}
+		else if(lane == 1 && myHolderR==null)myHolderR = Instantiate (holderR, can.transform);
+
+		switch (lane) {
+		case 0:
+			myHolderL.GetComponent<Image> ().sprite = results [1];
+			break;
+		case 1:
+			myHolderR.GetComponent<Image> ().sprite = results [1];
+			break;
+		}
 	}
 
-	public void Okay(){
+	public void Okay(int lane){
 		score += okay;
-		if(myHolder == null)myHolder = Instantiate (holder, can.transform);
+		if (lane == 0 && myHolderL==null) {
+			myHolderL = Instantiate (holderL, can.transform);
+		}
+		else if(lane == 1 && myHolderR==null)myHolderR = Instantiate (holderR, can.transform);
+		switch (lane) {
+		case 0:
+			myHolderL.GetComponent<Image> ().sprite = results [2];
+			break;
+		case 1:
+			myHolderR.GetComponent<Image> ().sprite = results [2];
+				break;
+		}
 	}
 
-	public void Wrong(){
+	public void Wrong(int lane){
 		score += wrong;
-		if(myHolder == null)myHolder = Instantiate (holder, can.transform);
+		if (lane == 0 && myHolderL==null) {
+			myHolderL = Instantiate (holderL, can.transform);
+		}
+		else if(lane == 1 && myHolderR==null)myHolderR = Instantiate (holderR, can.transform);
+		switch (lane) {
+		case 0:
+			myHolderL.GetComponent<Image> ().sprite = results [3];
+			break;
+		case 1:
+			myHolderR.GetComponent<Image> ().sprite = results [3];
+				break;
+		}
 	}
-	public void Miss(){
+	public void Miss(int lane){
 		score += miss;
-		if(myHolder == null)myHolder = Instantiate (holder, can.transform);
+		if (lane == 0 && myHolderL==null) {
+			myHolderL = Instantiate (holderL, can.transform);
+		}
+		else if(lane == 1 && myHolderR==null)myHolderR = Instantiate (holderR, can.transform);
+
+		switch (lane) {
+		case 0:
+			myHolderL.GetComponent<Image> ().sprite = results [4];
+			break;
+		case 1:
+			myHolderR.GetComponent<Image> ().sprite = results [4];
+				break;
+		}
 	}
 	//get set
 }
