@@ -11,6 +11,7 @@ public class Partical : MonoBehaviour {
 			endpoint = new Vector3 (-1.89f, -4.05f, 0);
 		else
 			endpoint = new Vector3 (1.81f, -4.05f, 0);
+		
 	}
 	
 	// Update is called once per frame
@@ -21,7 +22,10 @@ public class Partical : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Miss
-        if (collision.gameObject.tag == "KillBox") Destroy(gameObject);
+		if (collision.gameObject.tag == "KillBox") {
+			Destroy (gameObject);
+			//GameObject.Find ("Game Manager").GetComponent<GameManager> ().Miss ();
+		}
     }
 
     public int Lane{
