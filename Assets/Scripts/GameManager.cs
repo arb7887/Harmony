@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour {
 	private Image myHolderR;
 	private float rightTime;
 	private float leftTime;
+    public bool endGameSequence;
+    private bool canSpawn;
 
     //song file fields
     public GameObject json;
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour {
         //InvokeRepeating("Spawn",3f,1f);
         noteIndex = 0;
 		time = 0.0f;
+        endGameSequence = false;
+        canSpawn = true;
 	}
 	
 	// Update is called once per frame
@@ -77,16 +81,21 @@ public class GameManager : MonoBehaviour {
 		}
 		//Debug.Log (time);
         //if(time > 5000f && time < 5050f)  InvokeRepeating("Spawn",8f,1f);
-        if(time + 2000 >= songOBJ.particles[noteIndex].time[0])
+        if(time + 2000 >= songOBJ.particles[noteIndex].time[0] && canSpawn)
         {
             string which = songOBJ.particles[noteIndex].which[0];
             string left = which.Substring(0, 1);
             string right = which.Substring(1, 1);
             if (left != "x") Spawn(left, 0);
             if (right != "x") Spawn(right, 1);
-            noteIndex++;
+            if (songOBJ.particles.Length > noteIndex) noteIndex++;
+            else
+            {
+                endGameSequence = true;
+                GetComponent<PlayerControls>().End();
+                canSpawn = false;
+            }
         }
-		//Debug.Log (song.isPlaying);
 	}
 
 	void Spawn(string c, int l){

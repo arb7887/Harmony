@@ -21,7 +21,18 @@ public class PlayerControls : MonoBehaviour {
     private Vector2 oldMajorPos;
     private Vector2 oldMinorPos;
 
-	void Start () {
+    public GameObject gameManager;
+
+    //end game variables
+    private float mergeDuration = 1.0f;
+    private float mergeTime = 0.0f;
+    private float mergePercent = 0.0f;
+    private float ascendDuration = 1.0f;
+    private float ascendTime = 0.0f;
+    private float ascendPercent = 0.0f;
+    public GameObject endCanvas;
+
+    void Start () {
         majorPos = major.transform.position;
         minorPos = minor.transform.position;
 
@@ -51,6 +62,28 @@ public class PlayerControls : MonoBehaviour {
                 minor.GetComponent<BeatDetection>().lane = Mathf.Abs(minor.GetComponent<BeatDetection>().lane - 1);
             }
         }
+        if (gameManager.GetComponent<GameManager>().endGameSequence)
+        {
+            if (mergeTime < mergeDuration)
+            {
+                mergeTime += Time.deltaTime;
+                mergePercent = mergeTime / mergeDuration;
+                majorPos = Vector2.Lerp(oldMajorPos, new Vector2(0.0f, oldMajorPos.y), mergePercent);
+                minorPos = Vector2.Lerp(oldMinorPos, new Vector2(0.0f, oldMinorPos.y), mergePercent);
+            }
+            else 
+            {
+                ascendTime += Time.deltaTime;
+                ascendPercent = ascendTime / ascendDuration;
+                majorPos = Vector2.Lerp(new Vector2(0.0f, 4.0f), new Vector2(0.0f, -4.0f), ascendPercent);
+                majorPos = Vector2.Lerp(new Vector2(0.0f, 4.0f), new Vector2(0.0f, -4.0f), ascendPercent);
+                if(ascendTime >= ascendPercent)
+                {
+                    endCanvas.SetActive(true);
+                    gameManager.GetComponent<GameManager>().endGameSequence = false;
+                }
+            }
+        }
         major.transform.position = majorPos;
         minor.transform.position = minorPos;
 	}
@@ -58,6 +91,12 @@ public class PlayerControls : MonoBehaviour {
     void Swap()
     {
         isSwapping = true;
+        oldMajorPos = majorPos;
+        oldMinorPos = minorPos;
+    }
+
+    public void End()
+    {
         oldMajorPos = majorPos;
         oldMinorPos = minorPos;
     }
