@@ -48,16 +48,18 @@ public class GameManager : MonoBehaviour {
 			//buffer for spawning things
 			//check fo the current time and if its something that should happen, let it happen
 			//spawn particle at there spawn - time to travel to the bar
-			if(time%1000 == 0){
-				Spawn()
-			}
+			InvokeRepeating("Spawn",10f,1f);
 		}
 		else {
 			//end game stuff
 		}
 	}
 
-	void Spawn(int color, int lane){
+	void Spawn(){
+		int color = Random.Range (0, 2);
+
+		int lane = Random.Range (0, 2);
+		Debug.Log (color + " " + lane);
 		switch (lane) {
 		case 0:
 			if (color == 0) {
@@ -79,15 +81,24 @@ public class GameManager : MonoBehaviour {
 			break;
 		}
 	}
-<<<<<<< HEAD
-=======
-	void CheckPart(){
-		foreach (GameObject part in p) {
-			if (!part.GetComponent<Partical>().IsFalling) {
-				//Destroy (part);
-			}
-		}
+
+	public void Perfect(){
+		score += perfect;
 	}
->>>>>>> f78eea20f1566c297052fe2147377bd4d3f95bde
+
+	public void Good(){
+		score += good;
+	}
+
+	public void Okay(){
+		score += okay;
+	}
+
+	public void Wrong(){
+		score += wrong;
+	}
+	public void Miss(){
+		score += miss;
+	}
 	//get set
 }
