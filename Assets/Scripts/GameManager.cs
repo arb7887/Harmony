@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-//important game info
+    //important game info
 	//end game information
 	private int score = 0;
 	private int numMissed = 0;
@@ -41,23 +41,24 @@ public class GameManager : MonoBehaviour {
 	private float rightTime;
 	private float leftTime;
 
+    //song file fields
     public GameObject json;
     private Song songOBJ;
-
+    private int noteIndex;
 	// Use this for initialization
 	void Start () {
         songOBJ = json.GetComponent<jsonParse>().Parse("Assets/Songs/gamejam01.json");
-        Debug.Log(songOBJ.particles[0].time[0]);
 		//song.Play ();
 		p = new List<GameObject> ();
-		InvokeRepeating("Spawn",3f,1f);
+        //InvokeRepeating("Spawn",3f,1f);
+        noteIndex = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//check to make sure the song is still playing, when song is done game is done
 		shownScore.text = "Score: " + score;
-		time += Time.deltaTime*1000;
+		time = Time.time*1000;
 		if (myHolderL != null) {
 			leftTime += Time.deltaTime;
 			if (leftTime >= 2f) {
@@ -72,15 +73,22 @@ public class GameManager : MonoBehaviour {
 				rightTime = 0;
 			}
 		}
-		//if(time > 5000f && time < 5050f)  InvokeRepeating("Spawn",8f,1f);
-
+        //if(time > 5000f && time < 5050f)  InvokeRepeating("Spawn",8f,1f);
+        if(time + 2000 >= songOBJ.particles[noteIndex].time[0])
+        {
+            string which = songOBJ.particles[noteIndex].which[0];
+            string left = which.Substring(0, 1);
+            string right = which.Substring(1, 1);
+            if (left != "x") Spawn(left, 0);
+            if (right != "x") Spawn(right, 1);
+            noteIndex++;
+        }
 	}
 
-	void Spawn(){
-		int color = Random.Range (0, 2);
+	void Spawn(string c, int l){
+		int color = c == "b" ? 0 : 1;
 
-		int lane = Random.Range (0, 2);
-		Debug.Log (color + " " + lane);
+		int lane = l;
 		switch (lane) {
 		case 0:
 			if (color == 0) {
