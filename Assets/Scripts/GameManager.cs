@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour {
 	private int wrong = -5;
 	private int miss = -10;
 
-	private bool pause
-
 	// Use this for initialization
 	void Start () {
 		
