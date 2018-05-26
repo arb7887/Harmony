@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
 			//check fo the current time and if its something that should happen, let it happen
 			//spawn particle at there spawn - time to travel to the bar
 			if(time%1000 == 0){
-				Spawn()
+				//Spawn()
 			}
 		}
 		else {
@@ -79,15 +79,5 @@ public class GameManager : MonoBehaviour {
 			break;
 		}
 	}
-<<<<<<< HEAD
-=======
-	void CheckPart(){
-		foreach (GameObject part in p) {
-			if (!part.GetComponent<Partical>().IsFalling) {
-				//Destroy (part);
-			}
-		}
-	}
->>>>>>> f78eea20f1566c297052fe2147377bd4d3f95bde
 	//get set
 }
