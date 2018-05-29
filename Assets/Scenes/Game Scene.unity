@@ -416,6 +416,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4cf187c574e27d4f81e5b8bbb411eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 740547232}
+  perfectText: {fileID: 740547231}
+  greatText: {fileID: 740547230}
+  goodText: {fileID: 740547229}
+  missText: {fileID: 740547228}
   song: {fileID: 908676167}
   shownScore: {fileID: 1186342051}
   majorP: {fileID: 1945887756939928, guid: c907564547d49b64b88678f19527aab8, type: 2}
@@ -654,6 +659,31 @@ Prefab:
 --- !u!224 &740547227 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224997862107205254, guid: 5350d5329193f0f418dd4477d28e7498,
+    type: 2}
+  m_PrefabInternal: {fileID: 740547226}
+--- !u!1 &740547228 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1111389560954314, guid: 5350d5329193f0f418dd4477d28e7498,
+    type: 2}
+  m_PrefabInternal: {fileID: 740547226}
+--- !u!1 &740547229 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1825631419253556, guid: 5350d5329193f0f418dd4477d28e7498,
+    type: 2}
+  m_PrefabInternal: {fileID: 740547226}
+--- !u!1 &740547230 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1784021873062328, guid: 5350d5329193f0f418dd4477d28e7498,
+    type: 2}
+  m_PrefabInternal: {fileID: 740547226}
+--- !u!1 &740547231 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1064340831777074, guid: 5350d5329193f0f418dd4477d28e7498,
+    type: 2}
+  m_PrefabInternal: {fileID: 740547226}
+--- !u!1 &740547232 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1380922448054532, guid: 5350d5329193f0f418dd4477d28e7498,
     type: 2}
   m_PrefabInternal: {fileID: 740547226}
 --- !u!1 &831747596

@@ -11,10 +11,15 @@ public class GameManager : MonoBehaviour {
 	private int numMissed = 0;
 	private int numWrong = 0;
 	private int numPerfect = 0;
+	private int numGreat = 0;
 	private int numGood = 0;
-	private int numOkay = 0;
-	//scoring stuff
-	private int perfect = 10;
+    public GameObject scoreText;
+    public GameObject perfectText;
+    public GameObject greatText;
+    public GameObject goodText;
+    public GameObject missText;
+    //scoring stuff
+    private int perfect = 10;
 	private int good = 5;
 	private int okay = 2;
 	private int wrong = -5;
@@ -80,7 +85,7 @@ public class GameManager : MonoBehaviour {
 				rightTime = 0;
 			}
 		}
-		Debug.Log (time);
+		//Debug.Log (time);
         //if(time > 5000f && time < 5050f)  InvokeRepeating("Spawn",8f,1f);
         if(time + 2000 >= songOBJ.particles[noteIndex].time[0] && canSpawn)
         {
@@ -95,6 +100,12 @@ public class GameManager : MonoBehaviour {
                 endGameSequence = true;
                 GetComponent<PlayerControls>().End();
                 canSpawn = false;
+                shownScore.text = "";
+                scoreText.GetComponent<Text>().text = "SCORE: " + score; 
+                perfectText.GetComponent<Text>().text = "PERFECTS: " + numPerfect;
+                greatText.GetComponent<Text>().text = "GREATS: " + numGreat;
+                goodText.GetComponent<Text>().text = "GOODS: " + numGood;
+                missText.GetComponent<Text>().text = "MISSES: " + numMissed;
             }
         }
 	}
@@ -160,7 +171,7 @@ public class GameManager : MonoBehaviour {
 			myHolderR.GetComponent<Image> ().sprite = results [1];
 			break;
 		}
-		numGood++;
+		numGreat++;
 	}
 
 	public void Okay(int lane){
@@ -177,7 +188,7 @@ public class GameManager : MonoBehaviour {
 			myHolderR.GetComponent<Image> ().sprite = results [2];
 				break;
 		}
-		numOkay++;
+		numGood++;
 	}
 
 	public void Wrong(int lane){

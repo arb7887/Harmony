@@ -31,14 +31,14 @@ public class BeatDetection : MonoBehaviour {
                 || (lane == 0 && Input.GetKeyDown(KeyCode.LeftArrow)))
             {
                 //Correct
-                Debug.Log(otherTag);
-                Debug.Log(tag);
+                //Debug.Log(otherTag);
+                //Debug.Log(tag);
                 if (otherTag == (tag + " particle"))
                 {
                     Vector2 distance = other.transform.position - gameObject.transform.position;
-						
+
                     //Perfect
-					if(Mathf.Abs(distance.magnitude-radius) < 1.4f)
+                    if (Mathf.Abs(distance.magnitude - radius) > 1.6f)
                     {
 						gameManager.GetComponent<GameManager> ().Perfect (lane);
 						myAudio.clip = perfect;
@@ -52,8 +52,8 @@ public class BeatDetection : MonoBehaviour {
 						myAudio.Play ();
                     }
                     //Okay
-					if(Mathf.Abs(distance.magnitude-radius) > 1.6f)
-                    {
+					if (Mathf.Abs(distance.magnitude - radius) < 1.4f)
+                        {
 						gameManager.GetComponent<GameManager> ().Okay (lane);
 						myAudio.clip = good;
 						myAudio.Play ();
